@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function create()
     {
         $order = Order::get()->pluck('user_id');
-        $users = User::where('role_id',2)->whereNotIn('id',[$order])->get();
+        $users = User::where('role_id',2)->whereNotIn('id',$order)->get();
         $products = Product::get();
         return view("order.create",compact('users','products'));
     }
